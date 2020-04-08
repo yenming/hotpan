@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@+id/nav_home"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.project.pan.ui.home.HomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home"
+        >
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.project.pan.ui.settings.SettingsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_settings">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_guide"
+        android:name="com.project.pan.ui.guide.GuideFragment"
+        android:label=""
+        tools:layout="@layout/fragment_guide">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_helps"
+        android:name="com.project.pan.ui.helps.HelpshowFragment"
+        android:label=""
+        tools:layout="@layout/fragment_helps">
+    </fragment>
+
+</navigation>

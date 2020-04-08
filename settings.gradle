@@ -1,0 +1,2 @@
+rootProject.name='Pan'
+include ':app'

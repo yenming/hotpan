@@ -1,6 +1,7 @@
 package com.project.pan;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -22,6 +23,10 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.project.pan.R;
 import com.project.pan.ui.settings.SettingsFragment;
+import com.project.pan.ui.viewpager.RecipeSaver;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Objects;
 
@@ -29,7 +34,6 @@ public class DrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
-    private FragmentTransaction fragmentTransaction;
     private NavController navHomeController;
 
     @Override
@@ -39,7 +43,8 @@ public class DrawerActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        EventBus.getDefault().register(this);
+
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -67,7 +72,7 @@ public class DrawerActivity extends AppCompatActivity {
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navHomeController.navigate(R.id.nav_settings);;
+                navHomeController.navigate(R.id.nav_settings);
             }
         });
 
@@ -85,5 +90,21 @@ public class DrawerActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_home_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Subscribe
+    public void onEvent(Bundle getBundle){
+        if(getBundle.getBoolean("recipe")){
+            navHomeController.navigate(R.id.nav_recipe, getBundle);
+            Log.d("===Drawer===", "get recipe bundle: "+getBundle.getInt("recipe_img")+" / "+getBundle.getString("recipe_text"));
+        } else {
+            Log.d("===Drawer===", "no recipe bundle");
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

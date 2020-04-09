@@ -30,5 +30,7 @@
     <string name="target_temperature">Target Temperature</string>
     <string name="target_temperature_num">40</string>
 
+    <string name="recipe_mushroom_risotto">mushroom_risotto</string>
+
 
 </resources>

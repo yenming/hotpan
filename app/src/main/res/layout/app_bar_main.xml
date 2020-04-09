@@ -8,7 +8,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        app:elevation="0dp" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/appBar"

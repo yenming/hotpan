@@ -12,6 +12,20 @@
         android:label=""
         tools:layout="@layout/fragment_home"
         >
+        <action
+            android:id="@+id/action_nav_home_to_nav_recipe"
+            app:destination="@id/nav_recipe" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_settings"
+            app:destination="@id/nav_settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_recipe"
+        android:name="com.project.pan.ui.home.RecipeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_recipe"
+        >
     </fragment>
 
     <fragment

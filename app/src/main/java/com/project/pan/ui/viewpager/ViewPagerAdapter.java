@@ -52,6 +52,9 @@ public class ViewPagerAdapter extends PagerAdapter {
                 Log.d("=====Adapter=====", mSavedRecipe.get(position).getImgResource()+
                         " / "+ mSavedRecipe.get(position).getRecipeText());
                 bundle.putInt("recipe_img", mSavedRecipe.get(position).getImgResource());
+                bundle.putString("recipe_title", mSavedRecipe.get(position).getRecipeTitle());
+                bundle.putString("recipe_material", mSavedRecipe.get(position).getRecipeMaterial());
+                bundle.putString("recipe_quantity", mSavedRecipe.get(position).getRecipeQuantity());
                 bundle.putString("recipe_text", mSavedRecipe.get(position).getRecipeText());
                 bundle.putBoolean("recipe", true);
                 EventBus.getDefault().post(bundle);

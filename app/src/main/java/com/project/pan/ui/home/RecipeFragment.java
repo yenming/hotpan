@@ -12,27 +12,26 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.project.pan.R;
-import com.project.pan.ui.viewpager.RecipeSaver;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 
 public class RecipeFragment extends Fragment {
-
-    private ImageView mRecipeImg;
-    private TextView mRecipeText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_recipe, container, false);
 
-        mRecipeImg = root.findViewById(R.id.recipe_img);
-        mRecipeText = root.findViewById(R.id.recipe_text);
+        ImageView mRecipeImg = root.findViewById(R.id.recipe_img);
+        TextView mRecipeTitle = root.findViewById(R.id.recipe_title);
+        TextView mRecipeMaterial = root.findViewById(R.id.recipe_material);
+        TextView mRecipeQuantity = root.findViewById(R.id.recipe_quantity);
+        TextView mRecipeText = root.findViewById(R.id.recipe_text);
 
         Log.d("===Recipe Fragment===", "get recipe bundle");
         mRecipeImg.setImageResource(getArguments().getInt("recipe_img"));
+        mRecipeTitle.setText(getArguments().getString("recipe_title"));
+        mRecipeMaterial.setText(getArguments().getString("recipe_material"));
+        mRecipeQuantity.setText(getArguments().getString("recipe_quantity"));
         mRecipeText.setText(getArguments().getString("recipe_text"));
 
         return root;

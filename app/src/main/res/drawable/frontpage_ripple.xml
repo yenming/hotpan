@@ -3,12 +3,13 @@
     <item>
         <shape android:shape="ring"
             android:innerRadius="80dp"
-            android:thickness="2dp"
+            android:thickness="1dp"
             android:useLevel="false">
 
             <gradient
-                android:startColor="@color/colorRippleOrange2"
-                android:endColor="@color/colorRippleOrange2" />
+                android:angle="180"
+                android:startColor="@color/colorWhiteGray"
+                android:endColor="@color/colorRippleOrange1" />
         </shape>
     </item>
 </layer-list>

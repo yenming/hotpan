@@ -7,6 +7,6 @@
     <color name="colorWhiteGray">#848484</color>
     <color name="colorDarkOrange">#EF3E23</color>
     <color name="colorOrange">#F89D1C</color>
-    <color name="colorRippleOrange1">#FED206</color>
-    <color name="colorRippleOrange2">#F36F40</color>
+    <color name="colorRippleOrange1">#FFD200</color>
+    <color name="colorRippleOrange2">#EF3E23</color>
 </resources>

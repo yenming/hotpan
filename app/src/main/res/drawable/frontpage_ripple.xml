@@ -7,9 +7,9 @@
             android:useLevel="false">
 
             <gradient
-                android:angle="180"
-                android:startColor="@color/colorWhiteGray"
-                android:endColor="@color/colorRippleOrange1" />
+                android:angle="0"
+                android:startColor="@color/colorRippleOrange1"
+                android:endColor="@color/colorRippleOrange2" />
         </shape>
     </item>
 </layer-list>

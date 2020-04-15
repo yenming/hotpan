@@ -42,7 +42,7 @@ public class DevicesFragment extends Fragment {
         scaleAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.scale_circle);
         mRippleView.startAnimation(scaleAnimation);
 
-        Button skipBtn = (Button) root.findViewById(R.id.skipDevices);
+        Button skipBtn = root.findViewById(R.id.skipDevices);
 
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override

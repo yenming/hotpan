@@ -22,7 +22,7 @@ public class SettingsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
         ImageButton settingTemperature = root.findViewById(R.id.plateButton);
-        mSettingTemperature = root.findViewById(R.id.input_temperature);
+        mSettingTemperature = root.findViewById(R.id.plateEditText);
 
         settingTemperature.setOnClickListener(new View.OnClickListener() {
             @Override

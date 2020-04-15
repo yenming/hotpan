@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.project.pan.BackstageMain;
 import com.project.pan.DrawerActivity;
 import com.project.pan.R;
 import com.project.pan.ui.guide.GuideViewModel;
@@ -25,22 +26,31 @@ import java.util.Objects;
 public class FrontFragment extends Fragment {
 
     private NavController navFrontController;
-    private Intent getIntent;
+    private Intent deviceIntent , backstageIntent;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_frontpage, container, false);
         navFrontController = Navigation.findNavController(Objects.requireNonNull(this.getActivity()), R.id.nav_frontpage_fragment);
-        getIntent = new Intent(this.getActivity(), DrawerActivity.class);
+        deviceIntent = new Intent(this.getActivity(), DrawerActivity.class);
+        backstageIntent = new Intent(this.getActivity(), BackstageMain.class);
 
-        Button skipBtn = (Button) root.findViewById(R.id.skipPage);
-        Button nextDevice = (Button) root.findViewById(R.id.frontPage);
+        Button skipBtn = root.findViewById(R.id.skipPage);
+        Button nextDevice = root.findViewById(R.id.frontPage);
+        Button backstageBtn = root.findViewById(R.id.backPage);
 
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(getIntent);
+                startActivity(deviceIntent);
+            }
+        });
+
+        backstageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(backstageIntent);
             }
         });
 

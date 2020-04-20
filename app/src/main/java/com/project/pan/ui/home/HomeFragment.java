@@ -30,7 +30,7 @@ import java.util.Objects;
 public class HomeFragment extends Fragment {
 
     private ArrayList<RecipeSaver> mSavedRecipe = new ArrayList<>();
-    ViewPagerAdapter mAdapter;
+    private ViewPagerAdapter mAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

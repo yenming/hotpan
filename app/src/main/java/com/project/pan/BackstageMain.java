@@ -44,6 +44,8 @@ import com.project.pan.backstage.LogWriter;
 import com.project.pan.backstage.PanController;
 import com.project.pan.backstage.TextInputDialog;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -296,6 +298,10 @@ public class BackstageMain extends AppCompatActivity {
         plateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("set_temperature", Integer.parseInt(plateEditText.getText().toString()));
+                Log.d("===set_temperature===", "get temperature bundle: "+ Integer.parseInt(plateEditText.getText().toString()));
+                EventBus.getDefault().post(bundle);
                 pan.setPlateTemp(Double.parseDouble(plateEditText.getText().toString()));
             }
         });

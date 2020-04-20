@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.project.pan.ui.home.HomeFragment"
-        android:label=""
+        android:label="home"
         tools:layout="@layout/fragment_home"
         >
         <action
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/nav_recipe"
         android:name="com.project.pan.ui.home.RecipeFragment"
-        android:label=""
+        android:label="@string/recipe_string"
         tools:layout="@layout/fragment_recipe"
         >
     </fragment>
@@ -31,22 +31,25 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.project.pan.ui.settings.SettingsFragment"
-        android:label=""
+        android:label="settings"
         tools:layout="@layout/fragment_settings">
+
+        <argument android:name="set_temperature"
+            app:argType="integer" />
 
     </fragment>
 
     <fragment
         android:id="@+id/nav_guide"
         android:name="com.project.pan.ui.guide.GuideFragment"
-        android:label=""
+        android:label="guide"
         tools:layout="@layout/fragment_guide">
     </fragment>
 
     <fragment
         android:id="@+id/nav_helps"
         android:name="com.project.pan.ui.helps.HelpshowFragment"
-        android:label=""
+        android:label="helps"
         tools:layout="@layout/fragment_helps">
     </fragment>
 

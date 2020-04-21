@@ -1,4 +1,4 @@
-package com.project.pan;
+package com.project.pan.ui.frontpage;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -40,6 +40,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.opencsv.CSVReader;
+import com.project.pan.R;
 import com.project.pan.backstage.LogWriter;
 import com.project.pan.backstage.PanController;
 import com.project.pan.backstage.TextInputDialog;

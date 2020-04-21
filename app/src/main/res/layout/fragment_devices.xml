@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="@android:color/white"
-    tools:context=".MainActivity">
+    tools:context=".ui.frontpage.DevicesListActivity">
 
     <Button
         android:id="@+id/skipDevices"
@@ -25,49 +25,62 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:scaleType="centerInside"
+        android:background="@drawable/pan_icon"
         app:layout_constraintBottom_toBottomOf="@+id/rippleLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rippleLayout"
-        app:srcCompat="@drawable/pan_icon" />
+        app:layout_constraintTop_toTopOf="@+id/rippleLayout" />
 
     <ImageView
         android:id="@+id/ripple_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/frontpage_ripple"
         app:layout_constraintBottom_toBottomOf="@+id/rippleLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rippleLayout"
-        app:srcCompat="@drawable/frontpage_ripple" />
+        app:layout_constraintTop_toTopOf="@+id/rippleLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rippleLayout"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/skipDevices"
-        app:layout_constraintVertical_bias="0.0">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="301dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ripple_image">
 
         <ListView
+            android:id="@+id/paired_devices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ListView
+            android:id="@+id/new_devices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paired_devices"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

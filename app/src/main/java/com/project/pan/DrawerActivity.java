@@ -70,7 +70,8 @@ public class DrawerActivity extends AppCompatActivity {
                 .build();
         navHomeController = Navigation.findNavController(this, R.id.nav_home_fragment);
         navGraph = navHomeController.getNavInflater().inflate(R.navigation.home_navigation);
-        navHomeController.setGraph(navGraph, mTemperature);
+        navGraph.addArgument("set_temperature", temperatureArg);
+        navHomeController.setGraph(navGraph);
         NavigationUI.setupActionBarWithNavController(this, navHomeController, mAppBarConfiguration);
         setupWithNavController(navigationView, navHomeController);
 

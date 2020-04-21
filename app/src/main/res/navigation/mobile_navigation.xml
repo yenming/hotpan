@@ -10,19 +10,8 @@
         android:name="com.project.pan.ui.frontpage.FrontFragment"
         android:label=""
         tools:layout="@layout/fragment_frontpage">
-
-        <action
-            android:id="@+id/action_nav_frontPage_to_nav_devices"
-            app:destination="@id/nav_devices" />
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_devices"
-        android:name="com.project.pan.ui.frontpage.DevicesFragment"
-        android:label=""
-        tools:layout="@layout/fragment_devices">
-
-    </fragment>
 
 
 </navigation>

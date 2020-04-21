@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -34,7 +35,12 @@
         </activity>
 
         <activity
-            android:name=".BackstageMain"
+            android:name=".ui.frontpage.DevicesListActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".ui.frontpage.BackstageMain"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 

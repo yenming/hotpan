@@ -35,12 +35,12 @@
         </activity>
 
         <activity
-            android:name=".ui.frontpage.DevicesListActivity"
+            android:name=".DevicesListActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
         <activity
-            android:name=".ui.frontpage.BackstageMain"
+            android:name=".BackstageMain"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 

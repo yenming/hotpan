@@ -1,4 +1,4 @@
-package com.project.pan.ui.frontpage;
+package com.project.pan;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -18,6 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.pan.DrawerActivity;
 import com.project.pan.R;
@@ -25,7 +28,7 @@ import com.project.pan.R;
 import java.util.ArrayList;
 import java.util.Set;
 
-public class DevicesListActivity extends Activity {
+public class DevicesListActivity extends AppCompatActivity {
     private Intent getIntent;
     private ImageView mRippleView;
     private ListView deviceListView;
@@ -63,6 +66,7 @@ public class DevicesListActivity extends Activity {
         getIntent = new Intent(this, DrawerActivity.class);
         mRippleView = findViewById(R.id.ripple_image);
         //deviceListView = root.findViewById(R.id.devices_list);
+        final Bundle extra = this.getIntent().getExtras();
 
         scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.scale_circle);
         mRippleView.startAnimation(scaleAnimation);
@@ -71,6 +75,7 @@ public class DevicesListActivity extends Activity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getIntent.putExtras(extra);
                 startActivity(getIntent);
             }
         });
@@ -78,8 +83,8 @@ public class DevicesListActivity extends Activity {
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
         ArrayAdapter<String> pairedDevicesArrayAdapter =
-                new ArrayAdapter<>(this, R.layout.bluetooth_listitem, R.id.device_name);
-        mNewDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.bluetooth_listitem, R.id.device_name);
+                new ArrayAdapter<>(this, R.layout.bluetooth_listitem);
+        mNewDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.bluetooth_listitem);
 
         // Find and set up the ListView for paired devices
         ListView pairedListView = findViewById(R.id.paired_devices);
@@ -91,6 +96,10 @@ public class DevicesListActivity extends Activity {
         newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
         newDevicesListView.setOnItemClickListener(mDeviceClickListener);
 
+        // Get the local Bluetooth adapter
+        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+        mBtAdapter.startDiscovery();
+
         // Register for broadcasts when a device is discovered
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         this.registerReceiver(mReceiver, filter);
@@ -99,15 +108,8 @@ public class DevicesListActivity extends Activity {
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
-        // Get the local Bluetooth adapter
-        mBtAdapter = BluetoothAdapter.getDefaultAdapter();
-        mBtAdapter.startDiscovery();
-
         // Get a set of currently paired devices
         Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
-
-
-
         // If there are paired devices, add each one to the ArrayAdapter
         if (pairedDevices.size() > 0) {
             for (BluetoothDevice device : pairedDevices) {
@@ -161,8 +163,8 @@ public class DevicesListActivity extends Activity {
             mBtAdapter.cancelDiscovery();
 
             // Get the device MAC address, which is the last 17 chars in the View
-            String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 17);
+            String[] info = ((TextView) v).getText().toString().split("\n");
+            String address = info[1];
 
             // Create the result Intent and include the MAC address
             Intent intent = new Intent();
@@ -170,7 +172,8 @@ public class DevicesListActivity extends Activity {
 
             // Set result and finish this Activity
             setResult(Activity.RESULT_OK, intent);
-            finish();
+            Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
+
         }
     };
 
@@ -191,9 +194,7 @@ public class DevicesListActivity extends Activity {
                 if (device != null && device.getBondState() != BluetoothDevice.BOND_BONDED) {
                     mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
                 }
-                // When discovery is finished, change the Activity title
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                setProgressBarIndeterminateVisibility(false);
                 setTitle(R.string.select_device);
                 if (mNewDevicesArrayAdapter.getCount() == 0) {
                     String noDevices = getResources().getText(R.string.none_found).toString();

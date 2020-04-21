@@ -1,4 +1,4 @@
-package com.project.pan.ui.frontpage;
+package com.project.pan;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

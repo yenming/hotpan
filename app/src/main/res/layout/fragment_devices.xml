@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="@android:color/white"
-    tools:context=".ui.frontpage.DevicesListActivity">
+    tools:context=".DevicesListActivity">
 
     <Button
         android:id="@+id/skipDevices"
@@ -67,20 +67,21 @@
             android:id="@+id/paired_devices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/new_devices"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/paired_devices"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="@id/paired_devices"
+            app:layout_constraintStart_toStartOf="@id/paired_devices"
+            app:layout_constraintTop_toBottomOf="@+id/paired_devices" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

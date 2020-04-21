@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.project.pan.BackstageMain;
+import com.project.pan.DevicesListActivity;
 import com.project.pan.DrawerActivity;
 import com.project.pan.R;
 

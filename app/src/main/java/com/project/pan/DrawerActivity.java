@@ -1,5 +1,9 @@
 package com.project.pan;
 
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +42,9 @@ import java.util.Objects;
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
 
 public class DrawerActivity extends AppCompatActivity implements View.OnClickListener {
+    // Intent request codes
+    private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
+    private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
@@ -45,6 +52,16 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     private NavGraph navGraph;
     NavArgument temperatureArg;
     private Bundle mTemperature;
+
+    /**
+     * Local Bluetooth adapter
+     */
+    private BluetoothAdapter mBluetoothAdapter = null;
+
+    /**
+     * Member object for the chat services
+     */
+    private BluetoothChatService mChatService = null;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -58,6 +75,14 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
             mTemperature = this.getIntent().getExtras();
             temperatureArg = new NavArgument.Builder().setDefaultValue(mTemperature.getInt("set_temperature")).build();
             Log.d("===Drawer===", "get temperature bundle: "+ mTemperature.getInt("set_temperature")+" / "+ temperatureArg.getDefaultValue());
+        }
+        try{
+            mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            mBluetoothAdapter.enable();
+            Log.d("====addr====", this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS));
+            connectDevice(this.getIntent(), true);
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
         drawer = findViewById(R.id.drawer_layout);
@@ -83,6 +108,43 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         ImageButton setButton = findViewById(R.id.pan_setting);
         setButton.setOnClickListener(this);
 
+    }
+    /**
+     * Establish connection with other device
+     *
+     * @param data   An {@link Intent} with {@link DeviceListActivity#EXTRA_DEVICE_ADDRESS} extra.
+     * @param secure Socket Security type - Secure (true) , Insecure (false)
+     */
+    private void connectDevice(Intent data, boolean secure) {
+        // Get the device MAC address
+        Bundle extras = data.getExtras();
+        if (extras == null) {
+            return;
+        }
+        String address = extras.getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS);
+        Log.d("====addr====", address);
+        // Get the BluetoothDevice object
+        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        // Attempt to connect to the device
+        mChatService.connect(device, secure);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CONNECT_DEVICE_SECURE:
+                // When DeviceListActivity returns with a device to connect
+                if (resultCode == Activity.RESULT_OK) {
+                    connectDevice(data, true);
+                }
+                break;
+            case REQUEST_CONNECT_DEVICE_INSECURE:
+                // When DeviceListActivity returns with a device to connect
+                if (resultCode == Activity.RESULT_OK) {
+                    connectDevice(data, false);
+                }
+                break;
+        }
     }
 
     @Override

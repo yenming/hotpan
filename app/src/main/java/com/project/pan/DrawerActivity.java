@@ -37,7 +37,7 @@ import java.util.Objects;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
 
-public class DrawerActivity extends AppCompatActivity {
+public class DrawerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
@@ -45,7 +45,6 @@ public class DrawerActivity extends AppCompatActivity {
     private NavGraph navGraph;
     NavArgument temperatureArg;
     private Bundle mTemperature;
-    private Button mHomeFragment, mHomePopFragment, mHomeStepFragment;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -74,45 +73,26 @@ public class DrawerActivity extends AppCompatActivity {
         navGraph = navHomeController.getNavInflater().inflate(R.navigation.home_navigation);
         navGraph.addArgument("set_temperature", temperatureArg);
         navHomeController.setGraph(navGraph);
-        mHomeFragment = (Button) findViewById(R.id.popular_btn);
-        mHomePopFragment = (Button)findViewById(R.id.recommendable_btn);
-        mHomeStepFragment = (Button) findViewById(R.id.steps_btn);
-        mHomeFragment.setOnClickListener((View.OnClickListener) this);
-        mHomePopFragment.setOnClickListener((View.OnClickListener) this);
-        mHomeStepFragment.setOnClickListener((View.OnClickListener) this);
-
         NavigationUI.setupActionBarWithNavController(this, navHomeController, mAppBarConfiguration);
         setupWithNavController(navigationView, navHomeController);
 
         View getHeader = navigationView.getHeaderView(0);
         ImageButton menuButton = getHeader.findViewById(R.id.header_menu_btn);
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawers();
-            }
-        });
+        menuButton.setOnClickListener(this);
 
         ImageButton setButton = findViewById(R.id.pan_setting);
-        setButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navHomeController.navigate(R.id.nav_settings, mTemperature);
-            }
-        });
+        setButton.setOnClickListener(this);
 
     }
 
-    public void onClick(@NonNull View v){
+    @Override
+    public void onClick(View v){
         switch (v.getId()){
-            case R.id.popular_btn:
-                navHomeController.navigate(R.id.nav_home_pop, mTemperature);
+            case R.id.header_menu_btn:
+                drawer.closeDrawers();
                 break;
-            case R.id.recommendable_btn:
-                navHomeController.navigate(R.id.nav_home, mTemperature);
-                break;
-            case R.id.steps_btn:
-                navHomeController.navigate(R.id.nav_home_step, mTemperature);
+            case R.id.pan_setting:
+                navHomeController.navigate(R.id.nav_settings, mTemperature);
                 break;
         }
     }

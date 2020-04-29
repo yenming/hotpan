@@ -6,21 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/popular_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/home_button_selector"
+            android:text="@string/home_popular"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhiteGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/recommendable_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_button_selector"
+            android:text="@string/home_recommendable"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhiteGray"
+            app:layout_constraintBottom_toBottomOf="@+id/popular_btn"
+            app:layout_constraintEnd_toStartOf="@+id/steps_btn"
+            app:layout_constraintStart_toEndOf="@+id/popular_btn"
+            app:layout_constraintTop_toTopOf="@+id/popular_btn" />
+
+        <Button
+            android:id="@+id/steps_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/home_button_selector"
+            android:text="@string/home_10steps"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhiteGray"
+            app:layout_constraintBottom_toBottomOf="@+id/popular_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/popular_btn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/imageViewPager"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:foregroundGravity="center"
         android:layout_centerInParent="true"
-        android:overScrollMode="never"
-        android:clipToPadding="false"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="20dp"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:layout_constraintVertical_bias="0.0" />
 
 

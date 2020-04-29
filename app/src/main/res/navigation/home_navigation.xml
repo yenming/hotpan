@@ -21,6 +21,34 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_home_pop"
+        android:name="com.project.pan.ui.home.HomePopFragment"
+        android:label="home_pop"
+        tools:layout="@layout/fragment_home"
+        >
+        <action
+            android:id="@+id/action_nav_home_pop_to_nav_settings"
+            app:destination="@id/nav_settings" />
+        <action
+            android:id="@+id/action_nav_home_pop_to_nav_recipe"
+            app:destination="@id/nav_recipe" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_home_step"
+        android:name="com.project.pan.ui.home.HomeStepFragment"
+        android:label="home_step"
+        tools:layout="@layout/fragment_home"
+        >
+        <action
+            android:id="@+id/action_nav_home_step_to_nav_settings"
+            app:destination="@id/nav_settings" />
+        <action
+            android:id="@+id/action_nav_home_step_to_nav_recipe"
+            app:destination="@id/nav_recipe" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_recipe"
         android:name="com.project.pan.ui.home.RecipeFragment"
         android:label="@string/recipe_string"

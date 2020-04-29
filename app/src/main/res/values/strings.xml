@@ -12,6 +12,10 @@
     <string name="menu_guide">教學</string>
     <string name="menu_helps">幫助</string>
 
+    <string name="home_popular">popular</string>
+    <string name="home_recommendable">recommendable</string>
+    <string name="home_10steps">10 steps</string>
+
     <string name="front_frontPage">前台</string>
     <string name="front_backPage">後台</string>
     <string name="front_skip">跳過>></string>

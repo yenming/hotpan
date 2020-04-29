@@ -22,9 +22,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.project.pan.DrawerActivity;
-import com.project.pan.R;
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -62,7 +59,7 @@ public class DevicesListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_devices);
+        setContentView(R.layout.activity_devices);
         getIntent = new Intent(this, DrawerActivity.class);
         mRippleView = findViewById(R.id.ripple_image);
         //deviceListView = root.findViewById(R.id.devices_list);

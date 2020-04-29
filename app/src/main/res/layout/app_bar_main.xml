@@ -51,8 +51,54 @@
                  />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@android:color/white">
 
+            <Button
+                android:id="@+id/popular_btn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/home_button_bg"
+                android:text="@string/home_popular"
+                android:textColor="@color/colorWhiteGray"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="?android:attr/borderlessButtonStyle"/>
+
+            <Button
+                android:id="@+id/recommendable_btn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/home_button_bg"
+                android:text="@string/home_recommendable"
+                android:textColor="@color/colorWhiteGray"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/popular_btn"
+                app:layout_constraintEnd_toStartOf="@+id/steps_btn"
+                app:layout_constraintStart_toEndOf="@+id/popular_btn"
+                app:layout_constraintTop_toTopOf="@+id/popular_btn"
+                style="?android:attr/borderlessButtonStyle"/>
+
+            <Button
+                android:id="@+id/steps_btn"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/home_button_bg"
+                android:text="@string/home_10steps"
+                android:textColor="@color/colorWhiteGray"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/popular_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/popular_btn"
+                style="?android:attr/borderlessButtonStyle"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,6 +111,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </ScrollView>
+
+
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

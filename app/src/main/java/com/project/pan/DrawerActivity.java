@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -44,6 +45,7 @@ public class DrawerActivity extends AppCompatActivity {
     private NavGraph navGraph;
     NavArgument temperatureArg;
     private Bundle mTemperature;
+    private Button mHomeFragment, mHomePopFragment, mHomeStepFragment;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -72,6 +74,13 @@ public class DrawerActivity extends AppCompatActivity {
         navGraph = navHomeController.getNavInflater().inflate(R.navigation.home_navigation);
         navGraph.addArgument("set_temperature", temperatureArg);
         navHomeController.setGraph(navGraph);
+        mHomeFragment = (Button) findViewById(R.id.popular_btn);
+        mHomePopFragment = (Button)findViewById(R.id.recommendable_btn);
+        mHomeStepFragment = (Button) findViewById(R.id.steps_btn);
+        mHomeFragment.setOnClickListener((View.OnClickListener) this);
+        mHomePopFragment.setOnClickListener((View.OnClickListener) this);
+        mHomeStepFragment.setOnClickListener((View.OnClickListener) this);
+
         NavigationUI.setupActionBarWithNavController(this, navHomeController, mAppBarConfiguration);
         setupWithNavController(navigationView, navHomeController);
 
@@ -92,6 +101,20 @@ public class DrawerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onClick(@NonNull View v){
+        switch (v.getId()){
+            case R.id.popular_btn:
+                navHomeController.navigate(R.id.nav_home_pop, mTemperature);
+                break;
+            case R.id.recommendable_btn:
+                navHomeController.navigate(R.id.nav_home, mTemperature);
+                break;
+            case R.id.steps_btn:
+                navHomeController.navigate(R.id.nav_home_step, mTemperature);
+                break;
+        }
     }
 
     @Override

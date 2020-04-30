@@ -38,10 +38,8 @@
     <string name="recipe_string">Recipe</string>
 
     <string name="recipe_mushroom_risotto">Risotto</string>
-    <string name="recipe_mushroom_risotto_material">- olive oil or sunflower oil\n- onion\n- risotto rice\n- white wine\n
-        -  chicken stock cube\n- garlic cloves\n- cooked chicken\n- Italian-style cheese\n- butter\n- black pepper2 Tbsp
-    </string>
-    <string name="recipe_mushroom_risotto_quantity">1 pcs\n250 g\n100ml\n1 litre\n2 pcs\n250 g\n75 g\n25g\n</string>
+    <string name="recipe_mushroom_risotto_material">- olive oil or sunflower oil\n- onion\n- risotto rice\n- white wine\n- chicken stock cube\n- garlic cloves\n- cooked chicken\n- Italian-style cheese\n- butter\n- black pepper</string>
+    <string name="recipe_mushroom_risotto_quantity">2 Tbsp\n1 pcs\n250 g\n100ml\n1 litre\n2 pcs\n250 g\n75 g\n25g\n</string>
     <string name="recipe_mushroom_risotto_text">1.\tHeat the oil in a large, non-stick saucepan over a medium heat. Add the onion and garlic and fry for 2-3 minutes, stirring occasionally, until softened and just beginning to colour.
         \n2.\tAdd the risotto rice to the pan and stir well for 30-40 seconds, until the oil has coated the grains of rice.
         \n3.\tPour in half of the wine and allow to bubble for 30-40 seconds, then add all of the stock and bring to the boil, stirring well. Reduce the heat and simmer, uncovered, for 8-10 minutes, stirring frequently, until the rice is almost tender and the risotto is creamy in appearance.

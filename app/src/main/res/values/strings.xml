@@ -30,12 +30,14 @@
     <string name="pork">Pork</string>
 
     <string name="current_temperature">Current Temperature</string>
+    <string name="temperature_control">Temperature Control</string>
     <string name="current_temperature_num">40</string>
     <string name="target_temperature">Target Temperature</string>
     <string name="target_temperature_num">40</string>
 
     <string name="ingredients_string">Ingredients</string>
     <string name="recipe_string">Recipe</string>
+    <string name="recipe_cook">Smart Cook</string>
 
     <string name="recipe_mushroom_risotto">Risotto</string>
     <string name="recipe_mushroom_risotto_material">- olive oil or sunflower oil\n- onion\n- risotto rice\n- white wine\n- chicken stock cube\n- garlic cloves\n- cooked chicken\n- Italian-style cheese\n- butter\n- black pepper</string>

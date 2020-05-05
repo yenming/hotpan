@@ -8,5 +8,5 @@
     android:gravity="center_vertical|center_horizontal"
     android:padding="6dp"
     android:text="@string/get_full_device"
-    android:textColor="@android:color/black"
+    android:textColor="@color/colorWhiteGray"
     android:textSize="18sp" />

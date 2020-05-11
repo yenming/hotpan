@@ -16,17 +16,17 @@ public class RecipeSaver {
         this.mRecipeText = recipeText;
     }
 
-    int getImgResource(){
+    public int getImgResource(){
         return mImage;
     }
-    String getRecipeTitle(){
+    public String getRecipeTitle(){
         return mRecipeTitle;
     }
-    String getRecipeMaterial(){ return mRecipeMaterial; }
-    String getRecipeQuantity(){
+    public String getRecipeMaterial(){ return mRecipeMaterial; }
+    public String getRecipeQuantity(){
         return mRecipeQuantity;
     }
-    String getRecipeText(){
+    public String getRecipeText(){
         return mRecipeText;
     }
 

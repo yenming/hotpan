@@ -40,9 +40,9 @@ public class FoodGridViewAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View getView = layoutInflater.inflate(R.layout.food_item_layout, container,false);
+        View getView = layoutInflater.inflate(R.layout.foods_inside_items, container,false);
 
-        ImageView setImage = getView.findViewById(R.id.fragment_image);
+        ImageView setImage = getView.findViewById(R.id.inside_item_img);
         setImage.setImageResource(mSavedRecipe.get(position).getImgResource());
 
         getView.setOnClickListener(new View.OnClickListener() {

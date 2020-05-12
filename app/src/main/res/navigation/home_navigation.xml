@@ -20,6 +20,9 @@
             android:id="@+id/action_nav_home_to_nav_settings"
             app:destination="@id/nav_settings"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_home_to_fish_fragemnt"
+            app:destination="@id/fish_fragemnt" />
     </fragment>
 
     <fragment
@@ -43,6 +46,14 @@
         <argument android:name="set_temperature"
             app:argType="integer" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/fish_fragemnt"
+        android:name="com.project.pan.ui.foodbutton.FishFoodFragment"
+        android:label="FishFragment"
+        tools:layout="@layout/fragment_fish"
+        >
     </fragment>
 
     <fragment

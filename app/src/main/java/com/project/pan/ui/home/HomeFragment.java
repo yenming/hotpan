@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.project.pan.R;
+import com.project.pan.ui.foodbutton.FishFoodFragment;
 import com.project.pan.ui.viewpager.RecipeSaver;
 import com.project.pan.ui.viewpager.ViewPagerAdapter;
 
@@ -31,9 +32,11 @@ import java.util.Objects;
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private ArrayList<RecipeSaver> mSavedRecipe = new ArrayList<>();
+    private ArrayList<RecipeSaver> allRecipe = new ArrayList<>();
     private ViewPagerAdapter mAdapter;
     private ViewPager mPager;
     private Button mHomeFragmentBtn, mHomePopFragmentBtn, mHomeStepFragmentBtn;
+    private Button foodFishBtn;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,9 +57,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mHomeFragmentBtn = (Button) root.findViewById(R.id.recommendable_btn);
         mHomePopFragmentBtn = (Button) root.findViewById(R.id.popular_btn);
         mHomeStepFragmentBtn = (Button) root.findViewById(R.id.steps_btn);
+        foodFishBtn = (Button) root.findViewById(R.id.imagefish);
         mHomeFragmentBtn.setOnClickListener(this);
         mHomePopFragmentBtn.setOnClickListener(this);
         mHomeStepFragmentBtn.setOnClickListener(this);
+        foodFishBtn.setOnClickListener(this);
 
         return root;
     }
@@ -113,6 +118,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         //mSavedRecipe.add(new RecipeSaver(R.drawable.sauteed_fish_platter, "","","",""));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.smoky_hake_beans_greens_with_quick_garlic_mayonnaise, "","","",""));
     }
+    private void allResource() {
+        allRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
+                , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text)));
+        allRecipe.add(new RecipeSaver(R.drawable.softened_sweet_onion_and_80481_16x9, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
+                , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text)));
+        allRecipe.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
+                , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));
+        allRecipe.add(new RecipeSaver(R.drawable.recipe_image_legacy_id_423533_12, "","","",""));
+        allRecipe.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, "","","",""));
+        allRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, "","","",""));
+        allRecipe.add(new RecipeSaver(R.drawable.fish_curry_09718_16x9, "","","",""));
+        allRecipe.add(new RecipeSaver(R.drawable.honey_orange_roast_sea_bass_with_lentils,"","","",""));
+        allRecipe.add(new RecipeSaver(R.drawable.sauteed_fish_platter, "","","",""));
+        allRecipe.add(new RecipeSaver(R.drawable.smoky_hake_beans_greens_with_quick_garlic_mayonnaise, "","","",""));
+    }
 
     @Override
     public void onClick(View v){
@@ -134,6 +154,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 stepsImgResource();
                 mAdapter.notifyDataSetChanged();
                 getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+                break;
+            case R.id.imagefish:
+                //allResource();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.fish_fragemnt, new FishFoodFragment()).commit();
                 break;
         }
     }

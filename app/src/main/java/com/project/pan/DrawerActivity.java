@@ -37,6 +37,7 @@ import com.project.pan.ui.viewpager.RecipeSaver;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;

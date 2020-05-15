@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mPager.setAdapter(mAdapter);
         mPager.setPadding(100, 0, 100, 0);
 
+        TextView mRecipeTitle = root.findViewById(R.id.recipe_name);
         mHomeFragmentBtn = (Button) root.findViewById(R.id.recommendable_btn);
         mHomePopFragmentBtn = (Button) root.findViewById(R.id.popular_btn);
         mHomeStepFragmentBtn = (Button) root.findViewById(R.id.steps_btn);
@@ -62,6 +63,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mHomePopFragmentBtn.setOnClickListener(this);
         mHomeStepFragmentBtn.setOnClickListener(this);
         foodFishBtn.setOnClickListener(this);
+
+        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         return root;
     }

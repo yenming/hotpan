@@ -20,6 +20,8 @@
     <string name="front_backPage">後台</string>
     <string name="front_skip">跳過>></string>
 
+    <string name="recipe_title">Recipe Name</string>
+    <string name="food_category">Food category</string>
     <string name="beef">Beef</string>
     <string name="chicken">Chicken</string>
     <string name="dessert">Dessert</string>

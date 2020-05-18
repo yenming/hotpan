@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/image_round"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/orange_round_bg1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/current_temperature_num"
-        android:textSize="60sp"
         android:textColor="@color/colorWhiteGray"
+        android:textSize="120sp"
         app:layout_constraintBottom_toBottomOf="@+id/image_round"
         app:layout_constraintEnd_toEndOf="@+id/image_round"
         app:layout_constraintStart_toStartOf="@+id/image_round"
@@ -34,21 +34,17 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="@string/current_temperature"
         android:textColor="@color/colorWhiteGray"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="@+id/image_round"
+        app:layout_constraintStart_toStartOf="@+id/image_round"
+        app:layout_constraintTop_toBottomOf="@+id/image_round" />
 
     <ImageButton
         android:id="@+id/setButton"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="40dp"
         android:background="@android:color/transparent"
@@ -72,46 +68,47 @@
             android:id="@+id/targetTemperature"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="48sp"
+            android:gravity="center"
+            android:inputType="numberDecimal"
             android:text="@string/target_temperature_num"
             android:textColor="@color/colorGray"
-            android:gravity="center"
-            android:inputType="numberDecimal" />
+            android:textSize="48sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="12dp"
         android:background="@color/colorWhiteGray"
         app:layout_constraintBottom_toTopOf="@+id/setButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_round" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
         android:src="@drawable/temperature"
         app:layout_constraintBottom_toBottomOf="@+id/image_round"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_round"
-        app:layout_constraintTop_toTopOf="@+id/image_round"
-        app:layout_constraintVertical_bias="0.8"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/temperature"
-        app:layout_constraintBottom_toBottomOf="@+id/setButton"
-        app:layout_constraintStart_toEndOf="@+id/setButton"
-        app:layout_constraintTop_toTopOf="@+id/setButton"
-        app:layout_constraintVertical_bias="0.8" />
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhiteGray"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="Goal"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

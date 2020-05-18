@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private ViewPager mPager;
     private Button mHomeFragmentBtn, mHomePopFragmentBtn, mHomeStepFragmentBtn;
     private Button foodFishBtn;
+    private TextView mRecipeTitle;
     private View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,7 +55,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mPager.setAdapter(mAdapter);
         mPager.setPadding(100, 0, 100, 0);
 
-        TextView mRecipeTitle = root.findViewById(R.id.recipe_name);
+        mRecipeTitle = root.findViewById(R.id.recipe_name);
+        mRecipeTitle.setText(mSavedRecipe.get(0).getRecipeTitle());
         mHomeFragmentBtn = (Button) root.findViewById(R.id.recommendable_btn);
         mHomePopFragmentBtn = (Button) root.findViewById(R.id.popular_btn);
         mHomeStepFragmentBtn = (Button) root.findViewById(R.id.steps_btn);
@@ -64,7 +66,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mHomeStepFragmentBtn.setOnClickListener(this);
         foodFishBtn.setOnClickListener(this);
 
-        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -72,7 +74,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
             @Override
             public void onPageSelected(int position) {
-
+                mRecipeTitle.setText(mSavedRecipe.get(position).getRecipeTitle());
             }
 
             @Override
@@ -175,8 +177,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.imagefish:
                 //allResource();
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.fish_fragemnt, new FishFoodFragment()).commit();
                 break;
         }
     }

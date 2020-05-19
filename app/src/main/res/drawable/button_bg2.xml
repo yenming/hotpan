@@ -5,5 +5,5 @@
         android:startColor="@color/colorOrange"
         android:endColor="@color/colorDarkOrange">
     </gradient>
-    <corners android:radius="20dp" />
+    <corners android:radius="30dp" />
 </shape>

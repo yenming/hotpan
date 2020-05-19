@@ -7,10 +7,13 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/recipe_step"
+        android:id="@+id/recipe_step_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1."
+        android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        android:text="@string/recipe_steps_number"
+        android:textColor="@color/colorWhiteGray"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -21,10 +24,13 @@
         android:id="@+id/recipe_step_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:text="@string/recipe_french_scrambled_eggs_text"
         android:textColor="@color/colorWhiteGray"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/recipe_step"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/recipe_step_number"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

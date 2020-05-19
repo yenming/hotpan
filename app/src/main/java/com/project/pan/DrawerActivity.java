@@ -186,6 +186,12 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
                 case "set_temperature":
                     Log.d("===Drawer===", "get temperature bundle: "+key+" / "+getBundle.getInt("set_temperature"));
                     break;
+                case "food_fish":
+                    Log.d("===Drawer===", "get food_fish bundle: "+key+"/"+getBundle.getBoolean("food_fish"));
+                    if(getBundle.getBoolean("food_fish")){
+                        navHomeController.navigate(R.id.fish_fragemnt);
+                    }
+                    break;
                 default:
                     Log.d("===Drawer===", "get bundle: null");
                     break;

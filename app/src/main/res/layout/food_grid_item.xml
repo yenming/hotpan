@@ -50,8 +50,8 @@
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:background="@drawable/food_buttom_transblack"
+        android:layout_height="20dp"
+        android:background="@drawable/food_bottom_transblack"
         app:layout_constraintBottom_toBottomOf="@+id/food_grid_img"
         app:layout_constraintEnd_toEndOf="@+id/food_grid_img"
         app:layout_constraintStart_toStartOf="@+id/food_grid_img" />

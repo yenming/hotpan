@@ -42,6 +42,10 @@
     <string name="recipe_cook">Smart Cook</string>
     <string name="recipe_steps_number">0</string>
 
+    <string name="sous_vide">Sous vide</string>
+    <string name="saute">Saute</string>
+    <string name="deep_fry">Deep-fry</string>
+
     <string name="recipe_mushroom_risotto">Risotto</string>
     <string name="recipe_mushroom_risotto_material">- olive oil or sunflower oil\n- onion\n- risotto rice\n- white wine\n- chicken stock cube\n- garlic cloves\n- cooked chicken\n- Italian-style cheese\n- butter\n- black pepper</string>
     <string name="recipe_mushroom_risotto_quantity">2 Tbsp\n1 pcs\n250 g\n100ml\n1 litre\n2 pcs\n250 g\n75 g\n25g\n</string>

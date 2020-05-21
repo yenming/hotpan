@@ -37,7 +37,7 @@ public class FoodGridViewAdapter extends RecyclerView.Adapter<FoodGridViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull FoodGridViewAdapter.ViewHolder holder, int position) {
-        Log.d("===fish===", "Img: "+mSavedRecipe.get(position).getImgResource()+"/ Title: "+mSavedRecipe.get(position).getRecipeTitle());
+        //Log.d("===fish===", "Img: "+mSavedRecipe.get(position).getImgResource()+"/ Title: "+mSavedRecipe.get(position).getRecipeTitle());
         holder.foodGridImg.setImageResource(mSavedRecipe.get(position).getImgResource());
         holder.recipeTitle.setText(mSavedRecipe.get(position).getRecipeTitle());
     }

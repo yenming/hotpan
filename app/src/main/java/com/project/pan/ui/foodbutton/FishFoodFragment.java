@@ -48,8 +48,6 @@ public class FishFoodFragment extends Fragment {
                 , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text)));
         mRecipeSaver.add(new RecipeSaver(R.drawable.softened_sweet_onion_and_80481_16x9, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
                 , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text)));
-        mRecipeSaver.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
-                , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));
         mRecipeSaver.add(new RecipeSaver(R.drawable.recipe_image_legacy_id_423533_12, "","","",""));
         mRecipeSaver.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, "","","",""));
         mRecipeSaver.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, "","","",""));
@@ -57,6 +55,8 @@ public class FishFoodFragment extends Fragment {
         mRecipeSaver.add(new RecipeSaver(R.drawable.honey_orange_roast_sea_bass_with_lentils,"","","",""));
         mRecipeSaver.add(new RecipeSaver(R.drawable.sauteed_fish_platter, "","","",""));
         mRecipeSaver.add(new RecipeSaver(R.drawable.smoky_hake_beans_greens_with_quick_garlic_mayonnaise, "","","",""));
+        mRecipeSaver.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
+                , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));
     }
 
     @Override

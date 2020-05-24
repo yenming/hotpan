@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private void initImgResource() {
         mSavedRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
                 , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text)));
-        mSavedRecipe.add(new RecipeSaver(R.drawable.softened_sweet_onion_and_80481_16x9, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
                 , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 20));
         mSavedRecipe.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
                 , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));
@@ -134,24 +134,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v){
+        //hide 3 button change fragment action
         switch (v.getId()){
             case R.id.popular_btn:
-                mSavedRecipe.clear();
-                popularImgResource();
-                mAdapter.notifyDataSetChanged();
-                this.getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+                //mSavedRecipe.clear();
+                //popularImgResource();
+                //mAdapter.notifyDataSetChanged();
+                //this.getFragmentManager().beginTransaction().detach(this).attach(this).commit();
                 break;
             case R.id.recommendable_btn:
-                mSavedRecipe.clear();
-                initImgResource();
-                mAdapter.notifyDataSetChanged();
-                getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+                //mSavedRecipe.clear();
+                //initImgResource();
+                //mAdapter.notifyDataSetChanged();
+                //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
                 break;
             case R.id.steps_btn:
-                mSavedRecipe.clear();
-                stepsImgResource();
-                mAdapter.notifyDataSetChanged();
-                getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+                //mSavedRecipe.clear();
+                //stepsImgResource();
+                //mAdapter.notifyDataSetChanged();
+                //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
                 break;
             case R.id.imagefish:
                 //allResource();

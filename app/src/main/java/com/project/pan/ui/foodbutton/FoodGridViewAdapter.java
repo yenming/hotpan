@@ -40,6 +40,7 @@ public class FoodGridViewAdapter extends RecyclerView.Adapter<FoodGridViewAdapte
         //Log.d("===fish===", "Img: "+mSavedRecipe.get(position).getImgResource()+"/ Title: "+mSavedRecipe.get(position).getRecipeTitle());
         holder.foodGridImg.setImageResource(mSavedRecipe.get(position).getImgResource());
         holder.recipeTitle.setText(mSavedRecipe.get(position).getRecipeTitle());
+        holder.foodGridTime.setText(mContext.getString(R.string.get_recipe_time, mSavedRecipe.get(position).getRecipeTime()));
     }
 
     @Override
@@ -50,11 +51,13 @@ public class FoodGridViewAdapter extends RecyclerView.Adapter<FoodGridViewAdapte
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView foodGridImg;
         TextView recipeTitle;
+        TextView foodGridTime;
 
         public ViewHolder(View itemView) {
             super(itemView);
             foodGridImg = (ImageView) itemView.findViewById(R.id.food_grid_img);
             recipeTitle = (TextView) itemView.findViewById(R.id.food_grid_recipetitle);
+            foodGridTime = (TextView) itemView.findViewById(R.id.food_grid_time);
         }
     }
 }

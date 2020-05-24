@@ -75,7 +75,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/imageViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="450dp"
+                android:layout_height="375dp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="20dp"
@@ -107,14 +107,14 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="40dp"
                     android:background="@color/colorWhiteGray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipe_name"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -273,6 +273,8 @@
                     android:id="@+id/constraintLayout3"
                     android:layout_width="130dp"
                     android:layout_height="40dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:background="@android:color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/textView6"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -285,8 +287,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/food_category"
-                        android:textSize="14sp"
                         android:textColor="@color/colorWhiteGray"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -298,14 +300,16 @@
                     android:id="@+id/recipe_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/recipe_title"
-                    android:textSize="24sp"
-                    android:textColor="@color/colorGray"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+                    android:text="@string/recipe_title"
+                    android:textColor="@color/colorGray"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

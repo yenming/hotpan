@@ -681,7 +681,7 @@ public class BackstageMain extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Showing Paired Devices", Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
             alertDialog.setItems(list, new DialogInterface.OnClickListener() {
                 @Override

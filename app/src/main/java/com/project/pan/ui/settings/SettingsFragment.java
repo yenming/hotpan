@@ -31,7 +31,7 @@ public class SettingsFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
         ImageButton settingTemperature = root.findViewById(R.id.setButton);
-        TextView currentTemperature = root.findViewById(R.id.current_temperature);
+        final TextView currentTemperature = root.findViewById(R.id.current_temperature);
         mSettingTemperature = root.findViewById(R.id.targetTemperature);
         try {
             mTemperature = getArguments().getInt("set_temperature");
@@ -47,6 +47,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), mSettingTemperature.getText().toString(), Toast.LENGTH_SHORT).show();
+                currentTemperature.setText(mSettingTemperature.getText().toString());
                 pan.setPlateTemp(Double.parseDouble(mSettingTemperature.getText().toString()));
             }
         });

@@ -876,11 +876,13 @@ public class BackstageMain extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         if(address != null) editor.putString("address", address);
         editor.apply();
+        /*
         if (mConnectedThread != null)
         {
             pan.setPower(0);
         }
         bluetoothDisconnect();
+        */
     }
 
     @Override

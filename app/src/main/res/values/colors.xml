@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorGray">#272727</color>
-    <color name="colorWhiteGray">#848484</color>
+    <color name="colorWhiteGray">#6f6f6f</color>
     <color name="colorDarkOrange">#EF3E23</color>
     <color name="colorOrange">#F89D1C</color>
     <color name="colorRippleOrange1">#FFD200</color>

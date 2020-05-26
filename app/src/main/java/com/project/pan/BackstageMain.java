@@ -681,7 +681,7 @@ public class BackstageMain extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Showing Paired Devices", Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getApplicationContext());
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
             alertDialog.setItems(list, new DialogInterface.OnClickListener() {
                 @Override
@@ -876,11 +876,13 @@ public class BackstageMain extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         if(address != null) editor.putString("address", address);
         editor.apply();
+        /*
         if (mConnectedThread != null)
         {
             pan.setPower(0);
         }
         bluetoothDisconnect();
+        */
     }
 
     @Override

@@ -41,10 +41,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         } else {
             mAdapter.notifyDataSetChanged();
         }
-        mAdapter = new ViewPagerAdapter(this.getContext(), mSavedRecipe);
+        mAdapter = new ViewPagerAdapter(this.getActivity(), mSavedRecipe);
         mPager = root.findViewById(R.id.imageViewPager);
         mPager.setAdapter(mAdapter);
-        mPager.setPadding(100, 0, 100, 0);
+        mPager.setPadding(60, 0, 60, 8);
 
         mRecipeTitle = root.findViewById(R.id.recipe_name);
         mRecipeTitle.setText(mSavedRecipe.get(0).getRecipeTitle());
@@ -84,11 +84,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private void initImgResource() {
         mSavedRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
-                , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text)));
+                , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text), 20, 12));
         mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
-                , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 20));
+                , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 15, 10));
         mSavedRecipe.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
-                , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));
+                , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text), 15, 10));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.recipe_smoked_trout_fish_pies, getString(R.string.recipe_smoked_fish_pies),"","","", 25));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, getString(R.string.recipe_fennel_herb_barbecued_fish),"","","", 30));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_dong_po_rou),"","",""));
@@ -101,9 +101,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private void popularImgResource() {
         mSavedRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
-                , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text)));
+                , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text), 20, 12));
         mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
-                , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 20));
+                , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 15, 10));
         mSavedRecipe.add(new RecipeSaver(R.drawable.recipe_smoked_trout_fish_pies, getString(R.string.recipe_smoked_fish_pies),"","","", 25));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, getString(R.string.recipe_fennel_herb_barbecued_fish),"","","", 30));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_dong_po_rou),"","",""));

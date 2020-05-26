@@ -72,6 +72,7 @@
 
     <string name="get_full_device">%s\n%s</string>
     <string name="get_recipe_time">%d min</string>
+    <string name="get_recipe_steps">%d steps</string>
 
     <!--  BluetoothChat -->
     <string name="send">Send</string>

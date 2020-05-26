@@ -7,6 +7,18 @@ public class RecipeSaver {
     private String mRecipeMaterial;
     private String mRecipeQuantity;
     private int mRecipeTime;
+    private int mRecipeSteps;
+
+    public RecipeSaver(int imgResource, String recipeTitle, String recipeMaterial, String recipeQuantity, String recipeText, int recipeTime, int recipeSteps) {
+        super();
+        this.mImage = imgResource;
+        this.mRecipeTitle = recipeTitle;
+        this.mRecipeMaterial = recipeMaterial;
+        this.mRecipeQuantity = recipeQuantity;
+        this.mRecipeText = recipeText;
+        this.mRecipeTime = recipeTime;
+        this.mRecipeSteps = recipeSteps;
+    }
 
     public RecipeSaver(int imgResource, String recipeTitle, String recipeMaterial, String recipeQuantity, String recipeText, int recipeTime) {
         super();
@@ -16,6 +28,7 @@ public class RecipeSaver {
         this.mRecipeQuantity = recipeQuantity;
         this.mRecipeText = recipeText;
         this.mRecipeTime = recipeTime;
+        this.mRecipeSteps = 10;
     }
 
     public RecipeSaver(int imgResource, String recipeTitle, String recipeMaterial, String recipeQuantity, String recipeText) {
@@ -26,6 +39,7 @@ public class RecipeSaver {
         this.mRecipeQuantity = recipeQuantity;
         this.mRecipeText = recipeText;
         this.mRecipeTime = 20;
+        this.mRecipeSteps = 10;
     }
 
     public int getImgResource(){
@@ -43,6 +57,9 @@ public class RecipeSaver {
     }
     public int getRecipeTime(){
         return mRecipeTime;
+    }
+    public int getRecipeSteps(){
+        return mRecipeSteps;
     }
 
 }

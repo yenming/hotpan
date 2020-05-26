@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -44,6 +45,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         ImageView setImage = getView.findViewById(R.id.fragment_image);
         setImage.setImageResource(mSavedRecipe.get(position).getImgResource());
+        TextView setSteps = getView.findViewById(R.id.recipe_img_steps);
+        setSteps.setText(mContext.getString(R.string.get_recipe_steps, mSavedRecipe.get(position).getRecipeSteps()));
+        TextView setTime = getView.findViewById(R.id.recipe_img_time);
+        setTime.setText(mContext.getString(R.string.get_recipe_time, mSavedRecipe.get(position).getRecipeTime()));
 
         getView.setOnClickListener(new View.OnClickListener() {
             @Override

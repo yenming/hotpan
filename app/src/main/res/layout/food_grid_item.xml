@@ -14,7 +14,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/fgoeufs_brouilles_6"
+        android:background="@drawable/french_scrambled_eggs"
         android:foregroundGravity="center"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/food_image_strok"

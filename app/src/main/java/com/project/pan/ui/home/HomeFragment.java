@@ -83,11 +83,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
 
     private void initImgResource() {
-        mSavedRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.risotto, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
                 , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text), 20, 12));
-        mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.braised_pork_belly, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
                 , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 15, 10));
-        mSavedRecipe.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.french_scrambled_eggs, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
                 , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text), 15, 10));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.recipe_smoked_trout_fish_pies, getString(R.string.recipe_smoked_fish_pies),"","","", 25));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, getString(R.string.recipe_fennel_herb_barbecued_fish),"","","", 30));
@@ -100,9 +100,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     }
 
     private void popularImgResource() {
-        mSavedRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.risotto, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
                 , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text), 20, 12));
-        mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.braised_pork_belly, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
                 , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 15, 10));
         mSavedRecipe.add(new RecipeSaver(R.drawable.recipe_smoked_trout_fish_pies, getString(R.string.recipe_smoked_fish_pies),"","","", 25));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, getString(R.string.recipe_fennel_herb_barbecued_fish),"","","", 30));
@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         //mSavedRecipe.add(new RecipeSaver(R.drawable.honey_orange_roast_sea_bass_with_lentils,getString(R.string.recipe_honey_orange_roast_sea_bass),"","","", 20));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.sauteed_fish_platter, getString(R.string.recipe_sauteed_fish_platter),"","","", 20));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.smoky_hake_beans_greens_with_quick_garlic_mayonnaise, getString(R.string.recipe_smoke_hake_beans),"","","", 20));
-        /*mSavedRecipe.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
+        /*mSavedRecipe.add(new RecipeSaver(R.drawable.french_scrambled_eggs, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
                 , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));*/
     }
 
@@ -119,10 +119,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         /*mSavedRecipe.add(new RecipeSaver(R.drawable.mushroom_risotto_recipe_1, getString(R.string.recipe_mushroom_risotto), getString(R.string.recipe_mushroom_risotto_material)
                 , getString(R.string.recipe_mushroom_risotto_quantity), getString(R.string.recipe_mushroom_risotto_text)));*/
         mSavedRecipe.add(new RecipeSaver(R.drawable.recipe_smoked_trout_fish_pies, getString(R.string.recipe_smoked_fish_pies),"","","", 25));
-        mSavedRecipe.add(new RecipeSaver(R.drawable.fgoeufs_brouilles_6, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.french_scrambled_eggs, getString(R.string.recipe_french_scrambled_eggs), getString(R.string.recipe_french_scrambled_eggs_material)
                 , getString(R.string.recipe_french_scrambled_eggs_quantity), getString(R.string.recipe_french_scrambled_eggs_text)));
         mSavedRecipe.add(new RecipeSaver(R.drawable.fennelandherbbarbecu_67598_16x9, getString(R.string.recipe_fennel_herb_barbecued_fish),"","","", 30));
-        mSavedRecipe.add(new RecipeSaver(R.drawable.dong_po_rou_1080x676, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
+        mSavedRecipe.add(new RecipeSaver(R.drawable.braised_pork_belly, getString(R.string.recipe_braised_pork_belly), getString(R.string.recipe_braised_pork_belly_material)
                 , getString(R.string.recipe_braised_pork_belly_quantity), getString(R.string.recipe_braised_pork_belly_text), 20));
         mSavedRecipe.add(new RecipeSaver(R.drawable.fish_curry_09718_16x9, getString(R.string.recipe_fish_curry),"","","", 25));
         //mSavedRecipe.add(new RecipeSaver(R.drawable.honey_orange_roast_sea_bass_with_lentils,getString(R.string.recipe_honey_orange_roast_sea_bass),"","","", 20));

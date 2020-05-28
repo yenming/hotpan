@@ -11,7 +11,7 @@
         android:id="@+id/inside_item_img"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@drawable/dong_po_rou_1080x676"
+        android:background="@drawable/braised_pork_belly"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

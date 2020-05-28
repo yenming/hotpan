@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mAdapter = new ViewPagerAdapter(this.getActivity(), mSavedRecipe);
         mPager = root.findViewById(R.id.imageViewPager);
         mPager.setAdapter(mAdapter);
-        mPager.setPadding(60, 0, 60, 8);
+        mPager.setPadding(100, 0, 100, 0);
 
         mRecipeTitle = root.findViewById(R.id.recipe_name);
         mRecipeTitle.setText(mSavedRecipe.get(0).getRecipeTitle());

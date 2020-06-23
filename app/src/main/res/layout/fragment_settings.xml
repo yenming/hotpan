@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/current_temperature_num"
         android:textColor="@color/colorWhiteGray"
-        android:textSize="120sp"
+        android:textSize="90sp"
         app:layout_constraintBottom_toBottomOf="@+id/image_round"
         app:layout_constraintEnd_toEndOf="@+id/image_round"
         app:layout_constraintStart_toStartOf="@+id/image_round"
@@ -43,8 +43,8 @@
 
     <ImageButton
         android:id="@+id/setButton"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="40dp"
         android:background="@android:color/transparent"
@@ -62,7 +62,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/setButton"
         app:layout_constraintEnd_toEndOf="@+id/setButton"
         app:layout_constraintStart_toStartOf="@+id/setButton"
-        app:layout_constraintTop_toTopOf="@+id/setButton">
+        app:layout_constraintTop_toTopOf="@+id/setButton"
+        app:layout_constraintVertical_bias="0.40">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/targetTemperature"

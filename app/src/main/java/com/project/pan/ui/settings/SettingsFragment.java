@@ -34,6 +34,7 @@ public class SettingsFragment extends Fragment {
     private PanController mPanController = new PanController();
     private TextView currentTemperature;
     private ConnectedThread mConnectedThread;
+    private ImageButton settingTemperature;
 
     @SuppressLint("HandlerLeak")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,26 +45,42 @@ public class SettingsFragment extends Fragment {
         currentTemperature = root.findViewById(R.id.current_temperature);
         mSettingTemperature = root.findViewById(R.id.targetTemperature);
         BluetoothSocket mSocket = ((DrawerActivity)getActivity()).mBluetoothSocket;
-        try {
+        if(mSocket != null){
             mConnectedThread = new ConnectedThread(mSocket);
             mConnectedThread.start();
             initController();
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        settingTemperature.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTemperature = Double.parseDouble(mSettingTemperature.getText().toString());
-                if(mTemperature > 200)
-                {
-                    mPanController.setPlateTemp(200);
-                } else{
-                    mPanController.setPlateTemp(mTemperature);
+            settingTemperature.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mTemperature = Double.parseDouble(mSettingTemperature.getText().toString());
+                    if(mTemperature > 200)
+                    {
+                        mTemperature = 200;
+                        mPanController.setPlateTemp(mTemperature);
+                        Toast.makeText(getContext(), "Set "+mTemperature+" degree.", Toast.LENGTH_SHORT).show();
+                    } else{
+                        mPanController.setPlateTemp(mTemperature);
+                        Toast.makeText(getContext(), "Set "+mTemperature+" degree.", Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(getContext(), mSettingTemperature.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
-                //Toast.makeText(getContext(), mSettingTemperature.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+        } else {
+            settingTemperature.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mTemperature = Double.parseDouble(mSettingTemperature.getText().toString());
+                    if(mTemperature > 200)
+                    {
+                        mTemperature = 200;
+                        Toast.makeText(getContext(), "Set "+mTemperature+" degree.", Toast.LENGTH_SHORT).show();
+                    } else{
+                        Toast.makeText(getContext(), "Set "+mTemperature+" degree.", Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(getContext(), mSettingTemperature.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         return root;
     }

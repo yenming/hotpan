@@ -35,7 +35,7 @@
     <string name="temperature_control">Temperature Control</string>
     <string name="current_temperature_num">40</string>
     <string name="target_temperature">Target Temperature</string>
-    <string name="target_temperature_num">40</string>
+    <string name="target_temperature_num">0</string>
 
     <string name="ingredients_string">Ingredients</string>
     <string name="recipe_string">Recipe</string>

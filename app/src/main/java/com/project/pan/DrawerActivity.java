@@ -1,10 +1,15 @@
 package com.project.pan;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothHeadset;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,14 +37,22 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.project.pan.R;
+import com.project.pan.backstage.PanController;
 import com.project.pan.ui.settings.SettingsFragment;
 import com.project.pan.ui.viewpager.RecipeSaver;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
 
@@ -46,6 +60,7 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     // Intent request codes
     private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
+
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
@@ -58,11 +73,13 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
      * Local Bluetooth adapter
      */
     private BluetoothAdapter mBluetoothAdapter = null;
+    public BluetoothSocket mBluetoothSocket = null;
+    private BluetoothDevice mBluetoothDevice = null;
+    private String mAddress = null;
+    private String mDeviceName = null;
+    // SPP UUID service - this should work for most devices
+    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    /**
-     * Member object for the chat services
-     */
-    private BluetoothChatService mChatService = null;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -71,18 +88,26 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mBluetoothAdapter.enable();
 
         if(this.getIntent().getExtras() != null){
             mTemperature = this.getIntent().getExtras();
             temperatureArg = new NavArgument.Builder().setDefaultValue(mTemperature.getInt("set_temperature")).build();
             Log.d("===Drawer===", "get temperature bundle: "+ mTemperature.getInt("set_temperature")+" / "+ temperatureArg.getDefaultValue());
         }
-        try{
-            mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            mBluetoothAdapter.enable();
-            Log.d("====addr====", this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS));
-            connectDevice(this.getIntent(), true);
+        try {
+            mAddress = this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS);
+            mDeviceName = this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_NAME);
+            Log.d("====addr====", "Address: "+mAddress);
+            new BluetoothTask().execute();
+            if(mDeviceName != null){
+                Toast.makeText(getBaseContext(), "Connect to "+mDeviceName, Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(getBaseContext(), "No device connected", Toast.LENGTH_LONG).show();
+            }
         } catch (Exception e){
+            Toast.makeText(getBaseContext(), "No device connected", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
@@ -110,42 +135,88 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         setButton.setOnClickListener(this);
 
     }
-    /**
-     * Establish connection with other device
-     *
-     * @param data   An {@link Intent} with {@link DeviceListActivity#EXTRA_DEVICE_ADDRESS} extra.
-     * @param secure Socket Security type - Secure (true) , Insecure (false)
-     */
-    private void connectDevice(Intent data, boolean secure) {
-        // Get the device MAC address
-        Bundle extras = data.getExtras();
-        if (extras == null) {
-            return;
+
+    class BluetoothTask extends AsyncTask <Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            bluetoothConnect(mAddress);
+            return null;
         }
-        String address = extras.getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS);
-        Log.d("====addr====", address);
-        // Get the BluetoothDevice object
-        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-        // Attempt to connect to the device
-        mChatService.connect(device, secure);
+    }
+    public synchronized void bluetoothDisconnect() {
+        try {
+            if(mBluetoothSocket != null) {
+                //Don't leave Bluetooth sockets open when leaving activity
+                mBluetoothSocket.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            //insert code to deal with this
+        }
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_CONNECT_DEVICE_SECURE:
-                // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
-                    connectDevice(data, true);
-                }
-                break;
-            case REQUEST_CONNECT_DEVICE_INSECURE:
-                // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
-                    connectDevice(data, false);
-                }
-                break;
+    public synchronized void bluetoothConnect(String addr) {
+        if(!checkBTState()) {
+            Log.d("checkBTState()", "ERROR");
+            return;
         }
+        boolean condition;
+        condition = addr != null;
+        condition &= (mBluetoothAdapter != null) && (mBluetoothAdapter.isEnabled());
+        condition &= (mBluetoothAdapter != null) && (mBluetoothAdapter.getProfileConnectionState(BluetoothHeadset.HEADSET) != BluetoothHeadset.STATE_CONNECTED);
+
+        if(condition) {
+            //create device and set the MAC address
+            mBluetoothDevice = mBluetoothAdapter.getRemoteDevice(addr);
+
+            try {
+                mBluetoothSocket = createBluetoothSocket(mBluetoothDevice);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
+            }
+            // Establish the Bluetooth socket connection.
+            try {
+                mBluetoothSocket.connect();
+            } catch (IOException e) {
+                e.printStackTrace();
+                try {
+                    mBluetoothSocket.close();
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                    Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
+                    //insert code to deal with this
+                }
+            }
+        }
+    }
+
+    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
+
+        return  device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+        //creates secure outgoing connecetion with BT device using UUID
+    }
+
+    //Checks that the Android device Bluetooth is available and prompts to be turned on if off
+    private boolean checkBTState() {
+
+        if(mBluetoothAdapter == null) {
+            Toast.makeText(getBaseContext(), "Device does not support bluetooth", Toast.LENGTH_LONG).show();
+            return false;
+        } else {
+            if (!mBluetoothAdapter.isEnabled()) {
+                mBluetoothAdapter.enable();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, 1);
+            }
+        }
+        return true;
     }
 
     @Override
@@ -202,7 +273,20 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
-        EventBus.getDefault().register(this);
+        //bluetoothConnect(mAddress);
+        //EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //bluetoothDisconnect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        bluetoothDisconnect();
     }
 
     @Override

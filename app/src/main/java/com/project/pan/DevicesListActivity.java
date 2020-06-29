@@ -52,6 +52,7 @@ public class DevicesListActivity extends AppCompatActivity {
      * Return Intent extra
      */
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
+    public static String EXTRA_DEVICE_NAME = "device_name";
 
     /**
      * Member fields
@@ -170,15 +171,17 @@ public class DevicesListActivity extends AppCompatActivity {
 
             // Get the device MAC address, which is the last 17 chars in the View
             String[] info = ((TextView) v).getText().toString().split("\n");
+            String name = info[0];
             String address = info[1];
             BluetoothDevice getCurrentDevices = searchBtDevice(address);
             // Create the result Intent and include the MAC address
             //Intent intent = new Intent();
             getIntent.putExtra(EXTRA_DEVICE_ADDRESS, address);
+            getIntent.putExtra(EXTRA_DEVICE_NAME, name);
 
             // Set result and finish this Activity
             setResult(Activity.RESULT_OK, getIntent);
-            Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), address, Toast.LENGTH_SHORT).show();
             if(getCurrentDevices != null){
                 connect(getCurrentDevices);
             }

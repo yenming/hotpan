@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -50,6 +51,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static androidx.navigation.ui.NavigationUI.setupWithNavController;
 
@@ -73,6 +76,7 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     public BluetoothSocket mBluetoothSocket = null;
     private BluetoothDevice mBluetoothDevice = null;
     private String mAddress = null;
+    private String mDeviceName = null;
     // SPP UUID service - this should work for most devices
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -84,19 +88,26 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mBluetoothAdapter.enable();
 
         if(this.getIntent().getExtras() != null){
             mTemperature = this.getIntent().getExtras();
             temperatureArg = new NavArgument.Builder().setDefaultValue(mTemperature.getInt("set_temperature")).build();
             Log.d("===Drawer===", "get temperature bundle: "+ mTemperature.getInt("set_temperature")+" / "+ temperatureArg.getDefaultValue());
         }
-        try{
-            mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-            mBluetoothAdapter.enable();
+        try {
             mAddress = this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS);
-            Log.d("====addr====", this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_ADDRESS));
-            bluetoothConnect(mAddress);
+            mDeviceName = this.getIntent().getExtras().getString(DevicesListActivity.EXTRA_DEVICE_NAME);
+            Log.d("====addr====", "Address: "+mAddress);
+            new BluetoothTask().execute();
+            if(mDeviceName != null){
+                Toast.makeText(getBaseContext(), "Connect to "+mDeviceName, Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(getBaseContext(), "No device connected", Toast.LENGTH_LONG).show();
+            }
         } catch (Exception e){
+            Toast.makeText(getBaseContext(), "No device connected", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
@@ -125,6 +136,13 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    class BluetoothTask extends AsyncTask <Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            bluetoothConnect(mAddress);
+            return null;
+        }
+    }
     public synchronized void bluetoothDisconnect() {
         try {
             if(mBluetoothSocket != null) {
@@ -140,6 +158,7 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
 
     public synchronized void bluetoothConnect(String addr) {
         if(!checkBTState()) {
+            Log.d("checkBTState()", "ERROR");
             return;
         }
         boolean condition;
@@ -154,15 +173,19 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
             try {
                 mBluetoothSocket = createBluetoothSocket(mBluetoothDevice);
             } catch (IOException e) {
+                e.printStackTrace();
                 Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
             }
             // Establish the Bluetooth socket connection.
             try {
                 mBluetoothSocket.connect();
             } catch (IOException e) {
+                e.printStackTrace();
                 try {
                     mBluetoothSocket.close();
                 } catch (IOException e2) {
+                    e2.printStackTrace();
+                    Toast.makeText(getBaseContext(), "Socket creation failed", Toast.LENGTH_LONG).show();
                     //insert code to deal with this
                 }
             }
@@ -250,13 +273,19 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
-        bluetoothConnect(mAddress);
+        //bluetoothConnect(mAddress);
         //EventBus.getDefault().register(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        //bluetoothDisconnect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         bluetoothDisconnect();
     }
 

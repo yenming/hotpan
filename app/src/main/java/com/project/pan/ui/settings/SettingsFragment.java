@@ -43,10 +43,14 @@ public class SettingsFragment extends Fragment {
         ImageButton settingTemperature = root.findViewById(R.id.setButton);
         currentTemperature = root.findViewById(R.id.current_temperature);
         mSettingTemperature = root.findViewById(R.id.targetTemperature);
-        mConnectedThread = new ConnectedThread(((DrawerActivity)getActivity()).mBluetoothSocket);
-        mConnectedThread.start();
-        initController();
-
+        BluetoothSocket mSocket = ((DrawerActivity)getActivity()).mBluetoothSocket;
+        try {
+            mConnectedThread = new ConnectedThread(mSocket);
+            mConnectedThread.start();
+            initController();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         settingTemperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

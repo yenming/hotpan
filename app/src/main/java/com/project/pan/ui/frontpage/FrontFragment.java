@@ -33,7 +33,7 @@ public class FrontFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_frontpage, container, false);
-        navFrontController = Navigation.findNavController(Objects.requireNonNull(this.getActivity()), R.id.nav_frontpage_fragment);
+        navFrontController = Navigation.findNavController(this.requireActivity(), R.id.nav_frontpage_fragment);
         skipIntent = new Intent(this.getActivity(), DrawerActivity.class);
         searchDevices = new Intent(this.getActivity(), DevicesListActivity.class);
         backstageIntent = new Intent(this.getActivity(), BackstageMain.class);

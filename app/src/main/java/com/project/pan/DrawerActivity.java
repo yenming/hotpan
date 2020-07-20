@@ -273,8 +273,8 @@ public class DrawerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
-        //bluetoothConnect(mAddress);
-        //EventBus.getDefault().register(this);
+        bluetoothConnect(mAddress);
+        EventBus.getDefault().register(this);
     }
 
     @Override

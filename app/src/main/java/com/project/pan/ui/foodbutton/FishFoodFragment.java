@@ -47,7 +47,6 @@ public class FishFoodFragment extends Fragment {
         mRecipeSaver.add(new RecipeSaver(R.drawable.recipe_smoked_trout_fish_pies, getString(R.string.recipe_smoked_fish_pies),"","","", 50));
         mRecipeSaver.add(new RecipeSaver(R.drawable.fish_curry_09718_16x9, getString(R.string.recipe_fish_curry),"","","", 50));
         mRecipeSaver.add(new RecipeSaver(R.drawable.sauteed_fish_platter, getString(R.string.recipe_sauteed_fish_platter),"","","", 50));
-
     }
 
     @Override
